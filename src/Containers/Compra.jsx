@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ListaCompra from '../Components/ListaCompra'
+import FormularioCompra from '../Components/FormularioCompra'
 
 class Compra extends Component {
 
@@ -15,27 +16,35 @@ class Compra extends Component {
         }
 
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleInsert = this.handleInsert.bind(this)
     }
 
     handleRemove( removed ) {
 
-        console.log(removed, this.state.produtos, this);
-
         let newProdutos = this.state.produtos.filter( produto =>
             produto.id != removed.id )
 
-        console.log(newProdutos);
-
         this.setState( { produtos: newProdutos  } )
+
+    }
+
+    handleInsert( produto ) {
+
+        let newProdutos = this.state.produtos.slice()
+        newProdutos.push( produto )
+        this.setState( { produtos: newProdutos } )
 
     }
 
     render() {
 
         return (
-            <ListaCompra
-                produtos={ this.state.produtos }
-                onRemove={ this.handleRemove } />
+            <div>
+                <FormularioCompra onInsert={ this.handleInsert } />
+                <ListaCompra
+                    produtos={ this.state.produtos }
+                    onRemove={ this.handleRemove } />
+            </div>
         )
 
     }
