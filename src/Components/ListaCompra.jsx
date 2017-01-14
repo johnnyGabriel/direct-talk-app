@@ -8,7 +8,7 @@ const ListaCompras = ({ produtos, onRemove }) => {
         if (list.length == 0)
             return (
                 <tr>
-                    <td colSpan="5" className="text-center">Nenhum produto na lista</td>
+                    <td colSpan="6" className="text-center">Nenhum produto na lista</td>
                 </tr>
             )
 
@@ -20,6 +20,7 @@ const ListaCompras = ({ produtos, onRemove }) => {
 
             <thead>
                 <tr>
+                    <th></th>
                     <th>Nome</th>
                     <th>Quantidade</th>
                     <th>Valor Unitário</th>
@@ -39,9 +40,9 @@ const ListaCompras = ({ produtos, onRemove }) => {
                         onRemove={ onRemove } /> )}        
 
                 <tr>
-                    <td colSpan="3"></td>
+                    <td colSpan="4" className="text-right">Valor Total</td>
                     <td colSpan="2">
-                        { produtos.reduce( (acc, produto) => {
+                        R$ { produtos.reduce( (acc, produto) => {
                             return acc + produto.preco * produto.quantidade
                         }, 0 ) }
                     </td>

@@ -3,10 +3,11 @@ import React from 'react'
 const ListaCompraItem = ({ produto, onRemove }) => (
 
     <tr>
+        <td></td>
         <td> { produto.nome } </td>
         <td> { produto.quantidade } </td>
-        <td> { produto.preco } </td>
-        <td> { produto.preco * produto.quantidade } </td>
+        <td> R$ { produto.preco } </td>
+        <td> R$ { produto.preco * produto.quantidade } </td>
         <td>
             <button
                 type="button"

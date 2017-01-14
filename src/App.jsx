@@ -4,5 +4,5 @@ import Compra from './Containers/Compra'
 
 render( 
     <Compra />,
-    document.querySelector('.container')
+    document.querySelector('.jumbotron')
 )

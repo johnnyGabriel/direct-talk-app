@@ -5,8 +5,9 @@ import FormularioCompra from '../Components/FormularioCompra'
 class Compra extends Component {
 
     constructor(props) {
+        
         super(props)
-        // this.produtos = []
+
         this.state = {
             produtos: [
                 { id: 0, nome: "Arroz", preco: 10, quantidade: 2 },
@@ -40,7 +41,12 @@ class Compra extends Component {
 
         return (
             <div>
+                <h1 className="text-center">Aplicativo de Compras</h1>
+                <br />
+                <h2 className="text-center">Insira os produtos</h2>
                 <FormularioCompra onInsert={ this.handleInsert } />
+                <br />
+                <h2 className="text-center">Lista de produtos</h2>
                 <ListaCompra
                     produtos={ this.state.produtos }
                     onRemove={ this.handleRemove } />
