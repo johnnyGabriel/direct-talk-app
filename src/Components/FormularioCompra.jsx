@@ -1,5 +1,7 @@
 import React from 'react'
 
+const { func } = React.PropTypes
+
 const FormularioCompra = ({ onInsert }) => {
 
     let name, qtt, price
@@ -71,7 +73,7 @@ const FormularioCompra = ({ onInsert }) => {
 }
 
 FormularioCompra.propTypes = {
-    onInsert: React.PropTypes.func
+    onInsert: func
 }
 
 export default FormularioCompra

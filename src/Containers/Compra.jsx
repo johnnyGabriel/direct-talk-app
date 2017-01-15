@@ -40,16 +40,21 @@ class Compra extends Component {
     render() {
 
         return (
+
             <div>
+
                 <h1 className="text-center">Aplicativo de Compras</h1>
                 <br />
+
                 <h2 className="text-center">Insira os produtos</h2>
                 <FormularioCompra onInsert={ this.handleInsert } />
                 <br />
+
                 <h2 className="text-center">Lista de produtos</h2>
                 <ListaCompra
                     produtos={ this.state.produtos }
                     onRemove={ this.handleRemove } />
+
             </div>
         )
 

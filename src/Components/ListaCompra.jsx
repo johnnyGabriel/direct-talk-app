@@ -1,6 +1,8 @@
 import React from 'react'
 import ListaCompraItem from './ListaCompraItem.jsx'
 
+const { array, func } = React.PropTypes
+
 const ListaCompras = ({ produtos, onRemove }) => {
 
     const emptyList = (list) => {
@@ -8,9 +10,30 @@ const ListaCompras = ({ produtos, onRemove }) => {
         if (list.length == 0)
             return (
                 <tr>
-                    <td colSpan="6" className="text-center">Nenhum produto na lista</td>
+                    <td colSpan="6"
+                        className="text-center">
+                        Nenhum produto na lista
+                    </td>
                 </tr>
             )
+
+    }
+
+    const totalCompra = (produtos) => {
+
+        return produtos.reduce( (acc, produto) => {
+            return acc + (produto.preco * produto.quantidade)
+        }, 0 )
+
+    }
+
+    const transformProdutos = (produtos) => {
+
+        return produtos.map( produto =>
+            <ListaCompraItem
+                key={ produto.id }
+                produto={ produto }
+                onRemove={ onRemove } /> )
 
     }
 
@@ -33,18 +56,12 @@ const ListaCompras = ({ produtos, onRemove }) => {
 
                 { emptyList( produtos ) }
 
-                { produtos.map( produto =>
-                    <ListaCompraItem
-                        key={ produto.id }
-                        produto={ produto }
-                        onRemove={ onRemove } /> )}        
+                { transformProdutos(produtos) }        
 
                 <tr>
                     <td colSpan="4" className="text-right">Valor Total</td>
                     <td colSpan="2">
-                        R$ { produtos.reduce( (acc, produto) => {
-                            return acc + produto.preco * produto.quantidade
-                        }, 0 ) }
+                        R$ { totalCompra(produtos) }
                     </td>
                 </tr>
 
@@ -57,8 +74,8 @@ const ListaCompras = ({ produtos, onRemove }) => {
 }
 
 ListaCompras.propTypes = {
-    produtos: React.PropTypes.array.isRequired,
-    onRemove: React.PropTypes.func
+    produtos: array.isRequired,
+    onRemove: func
 }
 
 export default ListaCompras
